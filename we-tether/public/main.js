@@ -1,6 +1,11 @@
+/*
+File Purpose: Basic webapp startup & background functionality
+Author: Jack Kill
+Created: 2024-01-25
+*/
 const { app, BrowserWindow } = require('electron');
-// Basic webapp startup functionality
-
+const path = require('path');
+const isDev = require('electron-is-dev');
 
 function createWindow() {
     // Create the browser window
@@ -12,7 +17,11 @@ function createWindow() {
         }
     })
 
-    win.loadURL('http://localhost:3000');
+    win.loadURL(
+        isDev
+            ? 'http://localhost:3000'
+            : `file://${path.join(__dirname, '../build/index.html')}`
+    );
 }
 
 app.on('ready', createWindow);
