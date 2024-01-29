@@ -6,35 +6,93 @@ Created: 2024-01-25
 
 .App {
     text-align: center;
-  }
-  
+    overflow: hidden;
   .App-logo {
     height: 40vmin;
     pointer-events: none;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
+
+  .content-wrapper {
+    position: relative;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+
+    .header-wrapper {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+
+      .App-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .front-layer {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.5);
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .mountains-front {
+      position: absolute;
+      background-image: url(../assets/mountain_front.png);
+      background-position: left bottom;
+      background-repeat: repeat-x;
+      background-size: contain;
+      animation: slide-left infinite 60s linear;
+      height: 100%;
+      width: 220%;
+      z-index: -2;
+    }
+  
+    .mountains-back {
+      position: absolute;
+      background-image: url(../assets/mountain_back.png);
+      background-position: left bottom;
+      background-repeat: repeat-x;
+      background-size: contain;
+      animation: slide-left infinite 30s linear;
+      height: 100%;
+      width: 220%;
+      white-space: nowrap;
+      z-index: -3;
+    }
+  
+    .mountains-sun {
+      position: absolute;
+      background-image: url(../assets/sun.png);
+      background-position: center bottom;
+      background-repeat: repeat-x;
+      background-size: contain;
+      animation: image-spin infinite 45s linear;
+      height: 100%;
+      width: 100%;
+      z-index: -4;
+    }
+  
+    .back-layer {
+      position: absolute;
+      background-color: #282c34;
+      height: 100%;
+      width: 100%;
+      z-index: -5;
+    }
   }
   
   .App-link {
     color: #61dafb;
   }
   
-  @keyframes App-logo-spin {
+  @keyframes image-spin {
     from {
       transform: rotate(0deg);
     }
@@ -42,4 +100,12 @@ Created: 2024-01-25
       transform: rotate(360deg);
     }
   }
-  
+  @keyframes slide-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
